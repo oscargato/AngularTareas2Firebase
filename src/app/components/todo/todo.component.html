@@ -1,0 +1,26 @@
+<div class="input-group">
+	<input type="text" class="form-control" placeholder="Agregar Tarea" #itemTitle>
+	<div class="input-group-addon">
+		<button class="btn btn-outline-primary" (click)="addTodo(itemTitle)">
+			<i class="fa fa-plus-circle" aria-hidden="true"></i>
+		</button>
+	</div>
+</div>
+
+<ul class="list-group mt-4">
+	<li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+		*ngFor="let i of todoListArray"
+	>	<span class="cursor-hover"
+			  [class.text-success]="i.isChecked"
+			  (click)="updateTodo(i.$key, i.isChecked)"
+		>
+			<i [ngClass]="i.isChecked ? 'fa fa-check-circle' : 'fa fa-circle-o'"></i>
+		</span>
+		{{ i.title }}
+		<span class="text-danger cursor-hover"
+			  (click)="deleteTodo(i.$key)"
+		>
+			<i class="fa fa-trash" aria-hidden="true"></i>
+		</span>
+	</li>
+</ul>
